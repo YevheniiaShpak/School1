@@ -1,0 +1,15 @@
+{% extends "registration/base_generic.html" %}
+
+{% block content %}
+    <div class="forms-container">
+        <div class="form-container">
+            <h3>Реєстрація</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" name="register">Зареєструватись</button>
+            </form>
+            <p>Вже зареєстровані? <a href="{% url 'login' %}">Увійти</a></p>
+        </div>
+    </div>
+{% endblock %}
