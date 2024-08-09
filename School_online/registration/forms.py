@@ -26,5 +26,4 @@ class UserRegisterForm(UserCreationForm):
                 Teacher.objects.create(user=user)
             elif role == 'student':
                 Student.objects.create(user=user)
-
         return user

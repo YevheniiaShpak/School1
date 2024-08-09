@@ -39,7 +39,7 @@ def login_view(request):
     return render(request, 'registration/login.html', {'form': form})
 
 
-def custom_logout_view(request):
-    logout(request)
-    print("User logged out")
-    return redirect('login')
+#def custom_logout_view(request):
+    #logout(request)
+    #print("User logged out")
+    #return redirect('login')

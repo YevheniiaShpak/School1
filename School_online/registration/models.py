@@ -11,6 +11,7 @@ class Teacher(models.Model):
         return self.user.username
 
 
+
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     grade = models.CharField(max_length=10)
