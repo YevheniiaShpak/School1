@@ -15,7 +15,7 @@
             <ul>
                 {% if user.is_authenticated %}
                     <li>Вітаю, {{ user.username }}!</li>
-                    <li><a href="{% url 'logout' %}">Вийти</a></li>
+
                 {% else %}
                     <li><a href="{% url 'login' %}">Вхід</a></li>
                     <li><a href="{% url 'register' %}">Реєстрація</a></li>

@@ -8,7 +8,11 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" name="login">Увійти</button>
-            </form>
+            </form><br>
+             <form id="logout-form" method="post" action="{% url 'logout' %}">
+                 {% csrf_token %}
+                 <button type="submit">Вийти</button>
+             </form>
             <p>Немає акаунта? <a href="{% url 'register' %}">Зареєструватися</a></p>
         </div>
     </div>

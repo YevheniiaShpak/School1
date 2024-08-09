@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from .forms import UserRegisterForm
+from django.contrib.auth import logout
 
 
 def register_view(request):
@@ -27,12 +28,18 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, f'Ви зайшли як {username}.')
+                messages.info(request, f'Ви зайшли як {username}. Ласкаво просимо!')
                 return redirect('home')
             else:
                 messages.error(request, "Неправильне ім'я користувача або пароль.")
         else:
-            messages.error(request, "Форма недействительна.")
+            messages.error(request, "Форма недійсна.")
     else:
         form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})
+
+
+def custom_logout_view(request):
+    logout(request)
+    print("User logged out")
+    return redirect('login')
