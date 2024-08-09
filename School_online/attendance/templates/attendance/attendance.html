@@ -1,0 +1,23 @@
+{% extends "registration/base_generic.html" %}
+
+{% block content %}
+    <h2>Відвідуваність</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Користувач</th>
+                <th>Стан</th>
+                <th>Останній вхід</th>
+            </tr><br>
+        </thead>
+        <tbody>
+            {% for activity in activities %}
+                <tr>
+                    <td>{{ activity.user.username }}</td>
+                    <td>{{ activity.is_online|yesno:"Online,Offline" }}</td>
+                    <td>{{ activity.last_login }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
