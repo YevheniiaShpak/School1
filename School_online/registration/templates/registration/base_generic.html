@@ -15,12 +15,15 @@
             <ul>
                 {% if user.is_authenticated %}
                     <li>Вітаю, {{ user.username }}!</li>
-
+                    <form id="logout-form" method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <li><button type="submit">Вийти</button></li>
+                    </form>
                 {% else %}
                     <li><a href="{% url 'login' %}">Вхід</a></li>
                     <li><a href="{% url 'register' %}">Реєстрація</a></li>
                 {% endif %}
-                <li><a href="#">Відвідуваність</a></li>
+                <li><a href="{% url 'attendance' %}">Відвідуваність</a></li>
                 <li><a href="#">Журнали успішності</a></li>
                 <li><a href="#">Вчителі</a></li>
                 <li><a href="#">Про нас</a></li>

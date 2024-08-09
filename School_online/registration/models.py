@@ -33,14 +33,15 @@ class Parent(models.Model):
 
 
 class Enrollment(models.Model):
-    students = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
+    parent = models.ForeignKey(Parent, on_delete=models.CASCADE, null=True, blank=True)
     enroll_date = models.DateField(auto_now=True)
 
     def __repr__(self):
-        return f'Student: {self.students}, Teacher: {self.teacher}, Parent: {self.parent}'
+        return f'Student: {self.student}, Teacher: {self.teacher}, Parent: {self.parent}'
 
     def __str__(self):
-        return f'Student: {self.students}, Teacher: {self.teacher}, Parent: {self.parent}'
+        return f'Student: {self.student}, Teacher: {self.teacher}, Parent: {self.parent}'
+
 
