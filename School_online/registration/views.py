@@ -3,7 +3,6 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from .forms import UserRegisterForm
-from django.contrib.auth import logout
 
 
 def register_view(request):
@@ -39,7 +38,4 @@ def login_view(request):
     return render(request, 'registration/login.html', {'form': form})
 
 
-#def custom_logout_view(request):
-    #logout(request)
-    #print("User logged out")
-    #return redirect('login')
+

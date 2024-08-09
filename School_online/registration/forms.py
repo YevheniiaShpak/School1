@@ -1,16 +1,11 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Teacher, Student
-
+from django.contrib.auth.models import User
+from .models import Student, Teacher, Parent
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
-    ROLE_CHOICES = [
-        ('student', 'Student'),
-        ('teacher', 'Teacher'),
-    ]
-    role = forms.ChoiceField(choices=ROLE_CHOICES, required=True, label='Role')
+    role = forms.ChoiceField(choices=[('student', 'Студент'), ('teacher', 'Учитель'), ('parent', 'Родитель')])
 
     class Meta:
         model = User
@@ -18,12 +13,13 @@ class UserRegisterForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-
+        role = self.cleaned_data['role']
         if commit:
             user.save()
-            role = self.cleaned_data['role']
-            if role == 'teacher':
-                Teacher.objects.create(user=user)
-            elif role == 'student':
+            if role == 'student':
                 Student.objects.create(user=user)
+            elif role == 'teacher':
+                Teacher.objects.create(user=user)
+            elif role == 'parent':
+                Parent.objects.create(user=user)
         return user
