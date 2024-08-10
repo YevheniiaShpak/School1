@@ -26,4 +26,3 @@ def update_user_offline(sender, request, user, **kwargs):
 def log_user_logout(sender, request, user, **kwargs):
     if Student.objects.filter(user=user).exists():
         UserActivity.objects.update_or_create(user=user, defaults={'is_online': False})
-
