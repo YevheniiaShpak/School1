@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'registration',
     'attendance',
     'performance_journal',
+    'chat',
+    'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -136,8 +139,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-#LOGIN_REDIRECT_URL = '/'
-#LOGOUT_REDIRECT_URL = '/'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
@@ -147,3 +148,16 @@ LOGOUT_REDIRECT_URL = 'login'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+}
+
+

@@ -54,3 +54,26 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+#chat-window {
+    max-height: 70vh;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+#chat-form, .comments form {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+.comments {
+    margin-bottom: 20px;
+}
+
+.message {
+    margin-bottom: 20px;
+}

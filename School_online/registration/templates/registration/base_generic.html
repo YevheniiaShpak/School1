@@ -20,6 +20,8 @@
                         {% csrf_token %}
                         <li><button type="submit">Вийти</button></li>
                     </form>
+                    <li><a href="{% url 'attendance' %}">Відвідуваність</a></li>
+                    <li><a href="{% url 'performance_journal:grades_list' %}">Журнали успішності</a></li>
                     {% if user|is_teacher %}
                         <li><a href="{% url 'performance_journal:add_grade' %}">Додати оцінку</a></li>
                     {% endif %}
@@ -27,9 +29,8 @@
                     <li><a href="{% url 'login' %}">Вхід</a></li>
                     <li><a href="{% url 'register' %}">Реєстрація</a></li>
                 {% endif %}
-                <li><a href="{% url 'attendance' %}">Відвідуваність</a></li>
-                <li><a href="{% url 'performance_journal:grades_list' %}">Журнали успішності</a></li>
-                <li><a href="#">Вчителі</a></li>
+                <li><a href="{% url 'chat_page' %}">Вчителі</a></li>
+                <li><a href="#">Новини</a></li>
                 <li><a href="#">Про нас</a></li>
             </ul>
         </nav>

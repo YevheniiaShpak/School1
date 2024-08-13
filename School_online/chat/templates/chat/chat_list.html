@@ -1,0 +1,14 @@
+{% extends "registration/base_generic.html" %}
+
+{% block content %}
+<h2>Чати</h2>
+<ul>
+    {% for chat in chats %}
+    <li>
+        <a href="{% url 'chat_detail' chat.id %}">Чат із учасниками:
+            {{ chat.participants.all|join:", " }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

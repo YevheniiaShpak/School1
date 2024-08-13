@@ -1,0 +1,54 @@
+{% extends "registration/base_generic.html" %}
+{% load static %}
+{% load custom_filters_chat %}
+
+
+{% block content %}
+    <h2>Teacher1</h2>
+    <p>Добрий вчитель 24/7</p>
+    <h2>Teacher2</h2>
+    <p>Суворий вчитель 24/7</p>
+    <h2>Чат з учителями</h2>
+    <div id="chat-window">
+        {% for message in messages %}
+            <div class="message">
+                <strong>{{ message.sender.username }}</strong> до <strong>{{ message.recipient }}</strong>:
+                <p>{{ message.content }}</p>
+                <span class="timestamp">{{ message.timestamp|date:"d M Y, H:i" }}</span>
+
+                <div class="comments">
+                    <h3>Коментарі:</h3>
+                    {% for comment in message.comments.all %}
+                        <div class="comment">
+                            <strong>{{ comment.commenter.username }}</strong>:
+                            <p>{{ comment.content }}</p>
+                            <span class="timestamp">{{ comment.timestamp|date:"d M Y, H:i" }}</span>
+                        </div>
+                    {% empty %}
+                    <p>Коментарі відсутні.</p>
+                    {% endfor %}
+                    {% if user|is_teacher %}
+                        <form method="post" action="{% url 'comment_create' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="message_id" value="{{ message.id }}">
+                            <input type="text" name="comment" placeholder="Введіть ваш коментар...">
+                            <button type="submit">Додати коментар</button>
+                        </form>
+                </div>
+
+                    {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <form id="chat-form" method="post">
+        {% csrf_token %}
+        <label for="recipient">Виберіть одержувача:</label>
+        <select id="recipient" name="recipient">
+            {% for teacher in teachers %}
+                <option value="{{ teacher.id }}">{{ teacher }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="message" placeholder="Введіть ваше повідомлення...">
+        <button type="submit">Відправити</button>
+    </form>
+{% endblock %}
