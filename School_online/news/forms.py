@@ -1,9 +1,17 @@
-from .models import Artiles
 from django.forms import ModelForm
+from .models import Articles
+from django.utils import timezone
 
-
-class ArtilesForm(ModelForm):
-
+class ArticlesForm(ModelForm):
     class Meta:
-        model = Artiles
+        model = Articles
         fields = ['title', 'anons', 'full_text', 'date']
+
+    def save(self, commit=True):
+        article = super().save(commit=False)
+        if not article.date:
+            article.date = timezone.now()
+        if commit:
+            article.save()
+        return article
+
