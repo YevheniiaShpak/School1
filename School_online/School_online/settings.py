@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'chat',
     'rest_framework',
     'drf_yasg',
-    'news'
+    'news',
+    'about_us',
 ]
 
 MIDDLEWARE = [
