@@ -1,0 +1,19 @@
+{% extends "registration/base_generic.html" %}
+
+{% block content %}
+    <div class="features">
+        <h2>Новини</h2>
+        <a href="{% url 'create' %}"><button type='submit'>Додати статтю</button></a>
+        {% if news %}
+            {% for el in news %}
+                <div>
+                    <h3>{{el.title}}</h3>
+                    <p>{{el.full_text}}</p>
+                    <p>{{el.date}}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Новин немає</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "registration/base_generic.html" %}
+
+{% block content %}
+    <div>
+        <h1>Форма додавання статті</h1>
+        <form method="post"></form>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <span>{{ error }}</span>
+            <button type='submit'>Додати статтю</button>
+        </form>
+    </div>
+{% endblock %}

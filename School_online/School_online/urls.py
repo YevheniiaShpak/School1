@@ -41,4 +41,5 @@ urlpatterns = [
     path('performance_journal/', include('performance_journal.urls')),
     path('api/', include('chat.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('news/', include('news.urls')),
 ]
